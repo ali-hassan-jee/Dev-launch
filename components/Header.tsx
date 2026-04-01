@@ -9,10 +9,11 @@ function Header() {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <div className="bg-gray-50  min-h-16   max-w-[1440px] w-full mx-auto relative md:px-8 sm:px-4 px-2">
-     <header className="flex justify-between items-center ">
+    <div className=" sticky top-0 z-50 bg-white border-b border-gray-500">
+     <header className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between ">
        <Link href='/'>
-        <h1 className="header-logo md:text-3xl sm:text-2xl text-xl font-semibold cursor-pointer">
+        {/* <h1 className="header-logo md:text-3xl sm:text-2xl text-xl font-semibold cursor-pointer"> */}
+        <h1 className="text-2xl font-bold">
           DevLaunch
         </h1>
       </Link>
@@ -20,13 +21,13 @@ function Header() {
       {/* Navbar */}
       <nav
         onClick={closeMenu}
-        className='absolute top-3 hidden md:flex right-3 w-48 bg-gray-400 flex-col gap-1 py-5 px-2.5 rounded-lg text-xl transition-transform transform md:flex md:static md:flex-row md:gap-3 md:bg-transparent md:w-auto'
+        className='absolute top-3 hidden md:flex right-3 w-48 bg-gray-400 flex-col gap-6 py-5 px-2.5 rounded-lg text-xl transition-transform transform md:flex md:static md:flex-row md:gap-3 md:bg-transparent md:w-auto'
       >
         {NavLinks.map((navLink) => (
           <Link
             key={navLink.link}
             href={navLink.link}
-            className="text-gray-800 hover:scale-105 hover:underline transition-all duration-100 transform"
+            className="  text-gray-600 hover:scale-105 hover:underline hover:text-blue-600 transition-all duration-100 transform"
           >
             {navLink.title}
           </Link>
@@ -35,10 +36,10 @@ function Header() {
 
       {/* Buttons */}
       <div className="header-buttons hidden md:flex md:gap-4 sm:gap-3 gap-2">
-        <button className="border  border-gray-300 text-gray-800 px-1 md:px-5 sm:px-3 sm:py-2 py-1 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200">
+        <button className=" border border-gray-300 text-gray-800 px-1 md:px-5 sm:px-3 sm:py-2 py-1 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200">
           {BUTTONS.login}
         </button>
-        <button className="bg-blue-600 text-white md:px-5 sm:px-3 px-1 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200">
+        <button className="bg-blue-600  text-white md:px-5 sm:px-3 px-4 py-2 rounded-md font-semibold hover:bg-blue-700 transition-colors duration-200">
           {BUTTONS.getStarted}
         </button>
       </div>
