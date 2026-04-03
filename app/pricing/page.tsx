@@ -37,7 +37,7 @@ export default function PricingPage() {
   ];
 
   return (
-    <div className="  bg-gray-50 ">
+    <div className="  bg-gray-50 mb-15">
       <div className=" text-center mb-10 flex flex-col gap-3 mt-10">
         <h1 className="md:text-3xl text-2xl font-bold">
           Simple, Transparent Pricing
