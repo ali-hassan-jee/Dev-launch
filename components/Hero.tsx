@@ -3,7 +3,7 @@ function Hero() {
   return (
     
   // <section className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 border gap-10 items-center">
-     <section className="md:w-full  py-20 md:py-12 max-w-7xl mx-auto   sm:px-4 px-6">
+     <section className="md:w-full  py-20  max-w-7xl mx-auto   sm:px-4 px-6">
       {" "}
       <div className="grid h-full  grid-cols-1 md:grid-cols-2">
         <div className="flex  flex-col justify-center">
@@ -34,7 +34,7 @@ function Hero() {
         </div>
         <div className="relative hidden md:block  w-full h-[400px] lg:h-[500px]">
           <Image
-            src="/assets/images/workspace.jpg"
+            src="/assets/images/heroImage.png"
             alt="Workspace setup with development tools"
             fill
             className="object-cover rounded-xl"

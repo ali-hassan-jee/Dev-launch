@@ -20,11 +20,12 @@ function Header() {
 
       {/* Navbar */}
       <nav
-        onClick={closeMenu}
+        
         className='absolute top-3 hidden md:flex right-3 w-48 bg-gray-400 flex-col gap-6 py-5 px-2.5 rounded-lg text-xl transition-transform transform md:flex md:static md:flex-row md:gap-3 md:bg-transparent md:w-auto'
       >
         {NavLinks.map((navLink) => (
           <Link
+          onClick={closeMenu}
             key={navLink.link}
             href={navLink.link}
             className="  text-gray-600 hover:scale-105 hover:underline hover:text-blue-600 transition-all duration-100 transform"
