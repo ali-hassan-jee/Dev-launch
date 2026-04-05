@@ -8,23 +8,42 @@ export default function page() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [isSubmitted, setIssubmitted] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
+  const [loading,setLoading] = useState(false);
  
-  const handleSubmit=(e)=>{
+  const handleSubmit=async (e)=>{
     e.preventDefault();
+    setLoading(true);
+// API call
+const res = await fetch('/api/contact/', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+   name,email,message  }),
+});
+setLoading(false);
 
-    if (!name || !email || !message) { 
-    setError(true);         // show error
-    setIssubmitted(true);   // trigger message div
-    return;
-    }
-  setError(false);          // reset error
+
+const data = await res.json();
+if (data.error)
+{
+  setError(data.error)
+  setIssubmitted(true);
+  return;
+}
+   if(data.success)
+   {
+    setError("");          // reset error
   setIssubmitted(true);     // show success message
 
   // Optionally reset the form fields
   setName("");
   setEmail("");
   setMessage("");
+   }
+  
     
     
     
@@ -48,7 +67,7 @@ export default function page() {
   >
     <p>
       {error
-        ? "Please Fill all fields."
+        ? error
         : "Thank you! We'll get back to you soon."}
     </p>
   </div>
@@ -102,7 +121,7 @@ export default function page() {
           onChange={(e) => {setMessage(e.target.value);setIssubmitted(false)}}
         />
         <button type="submit"  className="bg-blue-600  mt-4 text-white md:px-5 sm:px-3 px-4 py-2 rounded-md font-semibold hover:bg-blue-700 transition-colors duration-200">
-          Send Message
+          {loading?'Sending...':'Send Message'}
         </button>
       </form>
     </div>
