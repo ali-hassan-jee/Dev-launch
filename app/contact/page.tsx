@@ -1,6 +1,5 @@
 "use client";
 
-import { METHODS } from "node:http";
 import { useEffect, useState } from "react";
 
 export default function ContactPage() {
