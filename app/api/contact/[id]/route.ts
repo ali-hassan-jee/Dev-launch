@@ -6,38 +6,48 @@ function isValidEmail(email: string): boolean {
   const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return re.test(email);
 }
-export async function DELETE(req:Request, { params }){
- const {id}= params;
+export async function DELETE(
+  req: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params; // 🔥 IMPORTANT FIX
 
-try{
-   await dbConnect();
+    console.log("ID received:", id);
 
-   const deleted = await Contact.findByIdAndDelete(id);
+    if (!id) {
+      return NextResponse.json(
+        { success: false, error: "Missing ID in params" },
+        { status: 400 }
+      );
+    }
 
-if (!deleted) {
-  return NextResponse.json(
-    { success: false, error: "Contact not found" },
-    { status: 404 }
-  );
+    await dbConnect();
+
+    const deleted = await Contact.findByIdAndDelete(id);
+
+    if (!deleted) {
+      return NextResponse.json(
+        { success: false, error: "Contact not found" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({
+      success: true,
+      message: "Contact deleted successfully",
+    });
+
+  } catch (error) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 }
+    );
+  }
 }
-    
-
-  return NextResponse.json(
-      {message: 'Contact deleted successfully',success:true },
-      { status: 200 },
-      
-    ); 
-} catch (error) {
-  const message =
-    error instanceof Error ? error.message : "Unknown error";
-
-  return NextResponse.json(
-    { success: false, error: message },
-    { status: 500 }
-  );
-}
-}
-
 
 
 
